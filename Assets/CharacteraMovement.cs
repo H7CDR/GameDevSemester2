@@ -75,12 +75,14 @@ public class CharacteraMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space) && isGroundedPlayer)
         {
             //Jump anim goes here
+            Debug.Log("Space is pressed");
             anim.SetBool("isJumping", true);
             //Adding jumpforce
 
             playerVelocity.y += Mathf.Sqrt(jumpForce * -3.0f * gravityForce);
 
         }
+        
         playerVelocity.y += gravityForce * Time.deltaTime;
         cc.Move(playerVelocity * Time.deltaTime);
     }
