@@ -1,12 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class CharacteraMovement : MonoBehaviour
 {
     [Tooltip("Movement Values")]
     [SerializeField]
     float movementSpeed, rotationSpeed, gravityForce, jumpForce;
+
+    [Header("Controls")]
+    public string horizontalInput; 
+    public string verticalInput;
+
+    [Header("KeyCode")]
+    public KeyCode Jump;
+    public KeyCode Left;
+    public KeyCode Right;
+    public KeyCode Up;
+    public KeyCode Down;
 
     CharacterController cc;
     Animator anim;
@@ -40,8 +52,12 @@ public class CharacteraMovement : MonoBehaviour
             playerVelocity.y = 0; //Always keep the character to the ground.
         }
         //Get Iput
-        float h = Input.GetAxis("Horizontal");
-        float v = Input.GetAxis("Vertical");
+        float h = Input.GetAxis(horizontalInput);
+        float v = Input.GetAxis(verticalInput);
+
+        //For Keyboard
+        //float h1 = Convert.ToInt64(Input.GetKey(KeyCode.A))*-1 + Convert.ToInt64(Input.GetKey(KeyCode.D));
+
         //Setting movement toward camera
         Vector3 camh = cam.transform.right;
         Vector3 camv = Vector3.Cross(camh, Vector3.up);
@@ -72,7 +88,7 @@ public class CharacteraMovement : MonoBehaviour
 
     public void ProcessGravity()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGroundedPlayer)
+        if (Input.GetKeyDown(Jump) && isGroundedPlayer)
         {
             //Jump anim goes here
             Debug.Log("Space is pressed");

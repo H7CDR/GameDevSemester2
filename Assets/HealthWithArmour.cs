@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HealthWithArmour : Health
+public class HealthWithArmour : HealthUI
 {
     public float armour;
     // Start is called before the first frame update
