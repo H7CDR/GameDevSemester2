@@ -7,7 +7,6 @@ public class ObjectMoveScript : MonoBehaviour
 {
     [SerializeField]
     float pushForce;
-    Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,18 +15,16 @@ public class ObjectMoveScript : MonoBehaviour
 
     private void OnEnable()
     {
-        this.rb = GetComponent<Rigidbody>();
         PushOnSpawn();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        transform.position = transform.position + new Vector3(0, 0, -1f*pushForce*Time.deltaTime);
     }
 
     public void PushOnSpawn()
     {
-        rb.AddForce(Vector3.back * pushForce *100);
     }
 }

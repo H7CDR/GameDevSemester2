@@ -8,6 +8,8 @@ public class NodeSpawner : MonoBehaviour
     [SerializeField]
     GameObject _sphere;
     [SerializeField]
+    GameObject _paper;
+    [SerializeField]
     float _spawnInterval;
     float _timer;
     [SerializeField]
@@ -25,8 +27,8 @@ public class NodeSpawner : MonoBehaviour
     void Update()
     {
         if(_timer >= _spawnInterval)
-        { 
-            Instantiate(_sphere, _spawnPoint.transform.position, Quaternion.identity);
+        {
+            //SpawnRock();
             _timer = 0;
         }
         else
@@ -35,5 +37,15 @@ public class NodeSpawner : MonoBehaviour
         }
 
     }
+
+    public void SpawnRock()
+    {
+        Instantiate(_sphere, _spawnPoint.transform.position, Quaternion.identity);
+    }
+
+    public void SpawnPaper()
+    {
+        Instantiate(_paper, _spawnPoint.transform.position, Quaternion.identity);
+    }    
 
 }

@@ -7,43 +7,73 @@ public class GameController : MonoBehaviour
     [SerializeField]
     ParticleSystem _particle;
     [SerializeField]
-    bool _PaperButtonPressed;
+    AudioSource _tapKick;
+    [SerializeField]
+    AudioSource _pressedWrong;
+    private Collider _paperCollider;
+    private Collider _rockCollider;
+    private Collider _scissorsCollider;
 
     private void Start()
     {
-        _PaperButtonPressed = false;
+        //_PaperButtonPressed = false;
+        _paperCollider = gameObject.GetComponent<BoxCollider>();
+        _rockCollider = gameObject.GetComponent<SphereCollider>();
+        _scissorsCollider = gameObject.GetComponent<CapsuleCollider>();
     }
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            _particle.Play();
+            Debug.Log("Paper!");
+            //_PaperButtonPressed = true;
+            _paperCollider.enabled = true;
+            _tapKick.Play();
+        }
+        else if (Input.GetKeyUp(KeyCode.O))
+        {
+            //_PaperButtonPressed = false;
+            _paperCollider.enabled = false;
+        }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            _particle.Play();
+            Debug.Log("ROCK!");
+            _rockCollider.enabled = true;
+            _tapKick.Play();
+        }
+        else if (Input.GetKeyUp(KeyCode.I))
+        {
+            _rockCollider.enabled = false;
+        }
         if (Input.GetKeyDown(KeyCode.P))
         {
             _particle.Play();
-            Debug.Log("P is pressed");
-            _PaperButtonPressed = true;
+            Debug.Log("Scissors!");
+            _scissorsCollider.enabled = true;
+            _tapKick.Play();
         }
-        else if (Input.GetKeyUp(KeyCode.P))
+        else if(Input.GetKeyUp(KeyCode.P))
         {
-            _PaperButtonPressed = false;
-        }
-        else
-        {
-            Invoke("PaperBoolOff", 1f);
+            _scissorsCollider.enabled = false;
         }
     }
 
-    private void OnTriggerStay(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Rock")&& _PaperButtonPressed == true)
+        Debug.Log(other.GetComponent<Collider>().ToString());
+        if (other.CompareTag("Rock"))
         {
-            Destroy(other.gameObject);
-            Debug.Log("Paper beat rocks"); 
+            //Destroy(other.gameObject);
+            //Debug.Log("Paper beat rocks");
         }
-
+        if (other.CompareTag("Paper"))
+        {
+            //Destroy(other.gameObject);
+            _pressedWrong.Play();
+        }
     }
 
-    private void PaperBoolOff()
-    {
-        _PaperButtonPressed = false;
-    }
 }
