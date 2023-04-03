@@ -10,6 +10,10 @@ public class NodeSpawner : MonoBehaviour
     [SerializeField]
     GameObject _paper;
     [SerializeField]
+    GameObject _scissors;
+    [SerializeField]
+    GameObject[] _spawnables;
+    [SerializeField]
     float _spawnInterval;
     float _timer;
     [SerializeField]
@@ -28,7 +32,7 @@ public class NodeSpawner : MonoBehaviour
     {
         if(_timer >= _spawnInterval)
         {
-            //SpawnRock();
+            spawnRandom();
             _timer = 0;
         }
         else
@@ -48,4 +52,14 @@ public class NodeSpawner : MonoBehaviour
         Instantiate(_paper, _spawnPoint.transform.position, Quaternion.identity);
     }    
 
+    public void SpawnScissors()
+    {
+        Instantiate(_scissors, _spawnPoint.transform.position, Quaternion.identity);
+    }
+
+    public void spawnRandom()
+    {
+        Instantiate(_spawnables[Random.Range(0,3)],_spawnPoint.transform.position, Quaternion.identity);    
+        
+    }
 }

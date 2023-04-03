@@ -23,11 +23,4 @@ public class TriggerOnPressed : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<Collider>().GetType() == typeof(BoxCollider))
-        {  
-            Destroy(gameObject);
-        }
-    }
 }

@@ -6,14 +6,16 @@ TagManager:
   tags:
   - Enemy
   - Rock
+  - Paper
+  - Scissors
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Player
   - Water
   - UI
-  - 
+  - Enemy
   - 
   - 
   - 

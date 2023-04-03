@@ -13,13 +13,15 @@ public class GameController : MonoBehaviour
     private Collider _paperCollider;
     private Collider _rockCollider;
     private Collider _scissorsCollider;
+    [SerializeField]
+    GameObject _rock, _paper, _scissors;
 
     private void Start()
     {
         //_PaperButtonPressed = false;
-        _paperCollider = gameObject.GetComponent<BoxCollider>();
-        _rockCollider = gameObject.GetComponent<SphereCollider>();
-        _scissorsCollider = gameObject.GetComponent<CapsuleCollider>();
+        _paperCollider = _paper.GetComponent<BoxCollider>();
+        _rockCollider = _rock.GetComponent<BoxCollider>();
+        _scissorsCollider = _scissors.GetComponent<BoxCollider>();
     }
 
     private void Update()
@@ -58,21 +60,6 @@ public class GameController : MonoBehaviour
         else if(Input.GetKeyUp(KeyCode.P))
         {
             _scissorsCollider.enabled = false;
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.GetComponent<Collider>().ToString());
-        if (other.CompareTag("Rock"))
-        {
-            //Destroy(other.gameObject);
-            //Debug.Log("Paper beat rocks");
-        }
-        if (other.CompareTag("Paper"))
-        {
-            //Destroy(other.gameObject);
-            _pressedWrong.Play();
         }
     }
 
