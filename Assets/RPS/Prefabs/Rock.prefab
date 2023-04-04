@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 6505322415815357442}
   - component: {fileID: 6505322415815357445}
   - component: {fileID: 5314616417961248726}
-  - component: {fileID: 39329540}
   m_Layer: 6
   m_Name: Rock
   m_TagString: Rock
@@ -143,24 +142,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 0}
---- !u!114 &39329540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6505322415815357455}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28aaba379dbfc314e9df19148f003dc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  originPoint: {x: 0, y: 0, z: 0}
-  rayLength: 4
-  _playerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  _enemyMask:
-    serializedVersion: 2
-    m_Bits: 0
-  _hitable: 0

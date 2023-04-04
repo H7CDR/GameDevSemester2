@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class hitDetector : MonoBehaviour
 {
-    public RaycastHit hit;
+    public static RaycastHit hit;
+    public static RaycastHit hit2;
     [SerializeField]
     Vector3 originPoint;
     [SerializeField]
@@ -15,14 +16,17 @@ public class hitDetector : MonoBehaviour
     [SerializeField]
     LayerMask _enemyMask;
     [SerializeField]
-    public bool _hitable;
+    public static bool _hitable;
     [SerializeField]
-    public float distanceToHitter;
+    float dist, dist2;
 
     void Start()
     {
+        originPoint = gameObject.transform.position;
+        _playerMask = LayerMask.GetMask("Player");
+        _enemyMask = LayerMask.GetMask("Enemy");
+        _hitable = false;
 
-        
     }
     void OnEnable()
     {
@@ -33,45 +37,33 @@ public class hitDetector : MonoBehaviour
     }
     void Update()
     {
-        distanceToHitter = hit.distance;
-        if (Physics.Raycast(transform.position, Vector3.back, out hit, Mathf.Infinity, _playerMask))
-        {
-            _hitable = false;
-            Debug.Log(hit.distance.ToString());
-            Debug.DrawRay(transform.position, Vector3.back * hit.distance, Color.red);
-            distanceToHitter = hit.distance;
-            if (hit.distance <= rayLength) 
+        dist = hit.distance;
+        dist2 = hit2.distance;
+       if (Physics.Raycast(originPoint, transform.TransformDirection(Vector3.forward), out hit, rayLength, _enemyMask))
+       {
+            Debug.Log(hit.collider.gameObject.name.ToString());
+            Debug.DrawLine(originPoint, hit.point, Color.red);
+            if(hit.distance<7f)
             {
-                Debug.Log("Hit the beat Hitter");
-                Debug.DrawRay(transform.position, Vector3.back * hit.distance, Color.yellow);
-                Debug.Log(hit.collider.name);
-                Debug.Log(hit.distance.ToString());
                 _hitable = true;
-
             }
-        }
-       /* else if (Physics.Raycast(transform.position, Vector3.back, out hit, rayLength, _playerMask))
-        {
-            Debug.Log("Hit the beat Hitter");
-            Debug.DrawRay(transform.position, Vector3.back * hit.distance, Color.yellow);
-            Debug.Log(hit.collider.name);
-            _hitable = true;
-        }*/
-        if (Physics.Raycast(transform.position, Vector3.forward, out hit, rayLength, _playerMask))
-        {
-            Debug.Log("Hit the beat Hitter");
-            Debug.DrawRay(transform.position, Vector3.forward * hit.distance, Color.yellow);
-            Debug.Log(hit.collider.name);
-            _hitable = true;
-        }
-        else if (Physics.Raycast(transform.position, Vector3.forward, out hit, Mathf.Infinity, _playerMask))
-        {
-            _hitable = false;
-            Debug.DrawRay(transform.position, Vector3.back * hit.distance, Color.red);
-        }
-        else
-        {
-            _hitable = true;
-        }
+            if(hit.distance>7f)
+            {
+                _hitable = false;
+            }
+       }
+       if( Physics.Raycast(originPoint, transform.TransformDirection(Vector3.back), out hit2, rayLength, _enemyMask))
+       {
+            Debug.Log(hit2.collider.gameObject.name.ToString());
+            Debug.DrawLine(originPoint, hit2.point, Color.yellow);
+            if (hit2.distance < 7f)
+            {
+                _hitable = true;
+            }
+            if (hit2.distance > 7f)
+            {
+                _hitable = false;
+            }
+       }
     }
 }
