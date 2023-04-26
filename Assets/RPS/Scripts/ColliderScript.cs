@@ -12,6 +12,8 @@ public class ColliderScript : hitDetector
     TypeOfCollision currentType;
     [SerializeField]
     AudioSource wrongSound;
+    [SerializeField]
+    HealthUI healthUIScript;
     
 
     public int comboCount;
@@ -20,6 +22,11 @@ public class ColliderScript : hitDetector
     [Header("Referecing other Script")]
     [SerializeField]
     ScoreManagerScript SMS;
+
+    [SerializeField]
+    StageManager stageManager;
+
+    public GameData saveData;
 
     // Start is called before the first frame update
     void Start()
@@ -58,8 +65,8 @@ public class ColliderScript : hitDetector
                 Destroy(other.gameObject);
                 Debug.Log("OKAY!");
                 gameObject.GetComponent<Collider>().enabled = false;
-                SMS.player1Score += (comboMultiplyer * SMS.scOkay);
-                SMS.comboCount += 1;
+                stageManager.player1Score += (comboMultiplyer * stageManager.scOkay);
+                stageManager.p1ComboCount += 1;
             }
             else if (other.CompareTag(currentType.ToString()) && (hit.distance < 0.5f && hit2.distance <0.5))
             {
@@ -67,8 +74,8 @@ public class ColliderScript : hitDetector
                 Destroy(other.gameObject);
                 Debug.Log("PERFECT");
                 gameObject.GetComponent<Collider>().enabled = false;
-                SMS.player1Score += (comboMultiplyer *SMS.scPerfect);
-                SMS.comboCount += 1;
+                stageManager.player1Score += (comboMultiplyer *stageManager.scPerfect);
+                stageManager.p1ComboCount += 1;
             }
             else if (other.CompareTag(currentType.ToString()) &&(hit.distance==0 && hit2.distance == 0))
             {
@@ -83,17 +90,19 @@ public class ColliderScript : hitDetector
                 Destroy(other.gameObject);
                 Debug.Log("MISSED");
                 gameObject.GetComponent<Collider>().enabled = false;
-                SMS.player1Score += SMS.scMissed;
-                SMS.comboCount = 0;
+                stageManager.player1Score += stageManager.scMissed;
+                stageManager.p1ComboCount = 0;
+                healthUIScript.TakeDamge(2);
             }
             else if (!other.CompareTag(currentType.ToString()))
             {
                 Debug.Log("WrongType");
                 gameObject.GetComponent<Collider>().enabled = false;
                 Destroy(other.gameObject);
-                SMS.player1Score += SMS.scMissed;
-                SMS.comboCount = 0;
+                stageManager.player1Score += stageManager.scMissed;
+                stageManager.p1ComboCount = 0;
                 wrongSound.Play();
+                healthUIScript.TakeDamge(1);
             }
         }
        

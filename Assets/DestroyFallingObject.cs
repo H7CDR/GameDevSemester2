@@ -6,6 +6,8 @@ using UnityEngine.Events;
 public class DestroyFallingObject : MonoBehaviour
 {
     public UnityEvent ontriggerEvent;
+    [SerializeField]
+    HealthUI healthUIScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class DestroyFallingObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        healthUIScript.TakeDamge(2);
         Destroy(other.gameObject);
         ontriggerEvent.Invoke();
     }

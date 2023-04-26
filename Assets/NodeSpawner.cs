@@ -17,6 +17,8 @@ public class NodeSpawner : MonoBehaviour
     float _spawnInterval;
     float _timer;
     [SerializeField]
+    float _bpm;
+    [SerializeField]
     GameObject _spawnPoint;
 
     [SerializeField]
@@ -27,6 +29,10 @@ public class NodeSpawner : MonoBehaviour
         
     }
 
+    private void OnEnable()
+    {
+        _spawnInterval = 60f / _bpm;
+    }
     // Update is called once per frame
     void Update()
     {
