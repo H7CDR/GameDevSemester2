@@ -34,4 +34,5 @@ public class HealthUI : Health
             healthIcon.fillAmount = currentHealth / maxHealth;
         }
     }
+
 }
