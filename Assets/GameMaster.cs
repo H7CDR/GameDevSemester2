@@ -6,16 +6,25 @@ using UnityEngine;
 public class GameMaster : MonoBehaviour
 {
     public GameData saveData;
-    public StageManager stageManager; 
-
+    static public GameMaster instance; 
 
     private void Awake()
     {
+        if (!instance)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
         saveData = SaveSystemScript.instance.LoadGame();
     }
 
     private void Start()
     {
+        
         saveData = SaveSystemScript.instance.LoadGame();
     }
 
@@ -26,7 +35,7 @@ public class GameMaster : MonoBehaviour
 
     public void SaveP1Score()
     {
-        saveData.player1Scores.Add(stageManager.player1Score);
+        saveData.player1Scores.Add(StageManager.instance.player1Score);
         saveData.player1Scores.Sort(SortFunc);
         SaveSystemScript.instance.SaveGame(saveData);
 
@@ -34,7 +43,7 @@ public class GameMaster : MonoBehaviour
 
     public void SaveP2Score()
     {
-        saveData.player2Scores.Add(stageManager.player2Score);
+        saveData.player2Scores.Add(StageManager.instance.player2Score);
         saveData.player2Scores.Sort(SortFunc);
         SaveSystemScript.instance.SaveGame(saveData);
     }

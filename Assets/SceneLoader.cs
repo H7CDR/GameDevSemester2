@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    public GameData saveData;
+    
     public void sceneLoader (int sceneIndex)
     {
         SceneManager.LoadScene (sceneIndex);
@@ -24,7 +24,9 @@ public class SceneLoader : MonoBehaviour
 
     public void closeGame()
     {
-        SaveSystemScript.instance.SaveGame(saveData);
+        SaveSystemScript.instance.SaveGame(GameMaster.instance.saveData);
         Application.Quit();
     }
+
+    
 }

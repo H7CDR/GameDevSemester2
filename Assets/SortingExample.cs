@@ -8,7 +8,6 @@ using System.Data;
 [System.Serializable]
 public class SortingExample : MonoBehaviour
 {
-    public GameMaster gameMaster;
     List<int> SoloScores = new List<int>();
     int i = 1;
 
@@ -17,7 +16,7 @@ public class SortingExample : MonoBehaviour
 
     private void Start()
     {
-        foreach (int score in gameMaster.saveData.player1Scores)
+        foreach (int score in GameMaster.instance.saveData.player1Scores)
         {
             SoloScores.Add(score);
         }

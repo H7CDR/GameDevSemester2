@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class StageManager : MonoBehaviour
 {
-    public GameData saveData;
     public Health player1Health;
     public ScoreManagerScript scoreManagerScript;
     public AudioSource _sound;
@@ -37,6 +36,7 @@ public class StageManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
 
     #endregion
@@ -46,6 +46,8 @@ public class StageManager : MonoBehaviour
     {
 
     }
+
+    
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
