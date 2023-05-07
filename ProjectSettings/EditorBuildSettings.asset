@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RPS.unity
     guid: adfcd492620f1de4c84c9e01bc091144
+  - enabled: 1
+    path: Assets/Scenes/RPS Multiplayer.unity
+    guid: 778a5aca327194ddcbc684755008ea77
   m_configObjects: {}

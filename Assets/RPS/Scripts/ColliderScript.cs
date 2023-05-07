@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class ColliderScript : hitDetector
 {
-
+    public enum Player {Player1, Player2};
+    public Player currentPlayer;
     [SerializeField]
     enum TypeOfCollision { Rock, Paper, Scissors };
     [SerializeField]
@@ -27,6 +28,9 @@ public class ColliderScript : hitDetector
     StageManager stageManager;
 
     public GameData saveData;
+
+    [SerializeField]
+    ParticleSystem p1Perfect, p1Okay, p1Missed, p2Perfect, p2Okay, p2Missed;
 
     // Start is called before the first frame update
     void Start()
@@ -57,25 +61,27 @@ public class ColliderScript : hitDetector
 
     private void OnTriggerEnter(Collider other)
     {
-        if(_hitable == true)
+        if(_hitable == true && currentPlayer == Player.Player1)
         {
             if (other.CompareTag(currentType.ToString()) && ((hit.distance > 0.5f && hit.distance <5f)|| (hit2.distance > 0.5f && hit2.distance < 5f)))
             {
                 Debug.Log(currentType.ToString());
                 Destroy(other.gameObject);
                 Debug.Log("OKAY!");
+                p1Okay.Play();
                 gameObject.GetComponent<Collider>().enabled = false;
-                StageManager.instance.player1Score += (comboMultiplyer * StageManager.instance.scOkay);
-                StageManager.instance.p1ComboCount += 1;
+                stageManager.player1Score += (comboMultiplyer * stageManager.scOkay);
+                stageManager.p1ComboCount += 1;
             }
             else if (other.CompareTag(currentType.ToString()) && (hit.distance < 0.5f && hit2.distance <0.5))
             {
                 Debug.Log(currentType.ToString());
                 Destroy(other.gameObject);
                 Debug.Log("PERFECT");
+                p1Perfect.Play();
                 gameObject.GetComponent<Collider>().enabled = false;
-                StageManager.instance.player1Score += (comboMultiplyer *StageManager.instance.scPerfect);
-                StageManager.instance.p1ComboCount += 1;
+                stageManager.player1Score += (comboMultiplyer *stageManager.scPerfect);
+                stageManager.p1ComboCount += 1;
             }
             else if (other.CompareTag(currentType.ToString()) &&(hit.distance==0 && hit2.distance == 0))
             {
@@ -89,9 +95,10 @@ public class ColliderScript : hitDetector
                 Debug.Log(currentType.ToString());
                 Destroy(other.gameObject);
                 Debug.Log("MISSED");
+                p1Missed.Play();
                 gameObject.GetComponent<Collider>().enabled = false;
-                StageManager.instance.player1Score += StageManager.instance.scMissed;
-                StageManager.instance.p1ComboCount = 0;
+                stageManager.player1Score += stageManager.scMissed;
+                stageManager.p1ComboCount = 0;
                 healthUIScript.TakeDamge(2);
             }
             else if (!other.CompareTag(currentType.ToString()))
@@ -99,8 +106,62 @@ public class ColliderScript : hitDetector
                 Debug.Log("WrongType");
                 gameObject.GetComponent<Collider>().enabled = false;
                 Destroy(other.gameObject);
-                StageManager.instance.player1Score += StageManager.instance.scMissed;
-                StageManager.instance.p1ComboCount = 0;
+                p1Missed.Play();
+                stageManager.player1Score += stageManager.scMissed;
+                stageManager.p1ComboCount = 0;
+                wrongSound.Play();
+                healthUIScript.TakeDamge(1);
+            }
+        }
+
+        if(_hitable == true && currentPlayer == Player.Player2)
+        {
+            if (other.CompareTag(currentType.ToString()) && ((hit.distance > 0.5f && hit.distance <5f)|| (hit2.distance > 0.5f && hit2.distance < 5f)))
+            {
+                Debug.Log(currentType.ToString());
+                Destroy(other.gameObject);
+                Debug.Log("OKAY!");
+                p2Okay.Play();
+                gameObject.GetComponent<Collider>().enabled = false;
+                stageManager.player2Score += (comboMultiplyer * stageManager.scOkay);
+                stageManager.p2ComboCount += 1;
+            }
+            else if (other.CompareTag(currentType.ToString()) && (hit.distance < 0.5f && hit2.distance <0.5))
+            {
+                Debug.Log(currentType.ToString());
+                Destroy(other.gameObject);
+                Debug.Log("PERFECT");
+                p2Perfect.Play();
+                gameObject.GetComponent<Collider>().enabled = false;
+                stageManager.player2Score += (comboMultiplyer *stageManager.scPerfect);
+                stageManager.p2ComboCount += 1;
+            }
+            else if (other.CompareTag(currentType.ToString()) &&(hit.distance==0 && hit2.distance == 0))
+            {
+                Debug.Log(currentType.ToString());
+                Destroy(other.gameObject);
+                Debug.Log("AMAZING");
+                gameObject.GetComponent<Collider>().enabled = false;
+            }
+            else if (other.CompareTag(currentType.ToString())&& (hit.distance>5f|| hit2.distance > 5f))
+            {
+                Debug.Log(currentType.ToString());
+                Destroy(other.gameObject);
+                Debug.Log("MISSED");
+                p2Missed.Play();
+                gameObject.GetComponent<Collider>().enabled = false;
+                stageManager.player2Score += stageManager.scMissed;
+                stageManager.p2ComboCount = 0;
+                healthUIScript.TakeDamge(2);
+            }
+            else if (!other.CompareTag(currentType.ToString()))
+            {
+                Debug.Log("WrongType");
+                gameObject.GetComponent<Collider>().enabled = false;
+                Destroy(other.gameObject);
+                p2Missed.Play();
+                stageManager.player2Score += stageManager.scMissed;
+                stageManager.p2ComboCount = 0;
                 wrongSound.Play();
                 healthUIScript.TakeDamge(1);
             }

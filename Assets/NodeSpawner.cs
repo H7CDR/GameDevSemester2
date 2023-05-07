@@ -19,7 +19,7 @@ public class NodeSpawner : MonoBehaviour
     [SerializeField]
     float _bpm;
     [SerializeField]
-    GameObject _spawnPoint;
+    GameObject _spawnPoint, _p2SpawnPoint;
 
     [SerializeField]
     UnityEvent obJectSpawn;
@@ -67,5 +67,10 @@ public class NodeSpawner : MonoBehaviour
     {
         Instantiate(_spawnables[Random.Range(0,3)],_spawnPoint.transform.position, Quaternion.identity);    
         
+    }
+
+    public void p2SpawnRandom()
+    {
+        Instantiate(_spawnables[Random.Range(0, 3)], _p2SpawnPoint.transform.position, Quaternion.identity);
     }
 }
