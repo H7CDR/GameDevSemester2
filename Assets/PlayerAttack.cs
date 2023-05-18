@@ -6,28 +6,37 @@ using UnityEngine;
 public class PlayerAttack : MonoBehaviour
 {
     Animator anim;
-    float seqAttackTimer;
+
+    [Header("Melee Attack Setting")]
+    public GameObject meleeCollider;
+    public float attackDelay;
+    public float attackLifeTime;
+
     // Start is called before the first frame update
     void Start()
     {
         anim= GetComponentInChildren<Animator>();
-        seqAttackTimer = 0;
+        meleeCollider.SetActive(false);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.J) && seqAttackTimer == 0) 
+        if(Input.GetMouseButton(0))
         {
-            seqAttackTimer += 1;
             anim.Play("Attack");
-            
+            Invoke("ActivateMeleeCollider", attackDelay);
         }
-        if(Input.GetKey(KeyCode.J) && seqAttackTimer == 1)
-        {
-            seqAttackTimer = 0;
-            anim.SetInteger("AttkSeq", 1);
-        }
+    }
 
+    void ActivateMeleeCollider()
+    {
+        meleeCollider.SetActive(true);
+        Invoke("DeactivateMeleeCollider", attackLifeTime);
+    }
+    
+    void DeactivateMeleeCollider()
+    {
+        meleeCollider.SetActive(false);
     }
 }
