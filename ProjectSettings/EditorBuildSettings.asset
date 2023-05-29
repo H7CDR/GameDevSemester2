@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/RPS.unity
     guid: adfcd492620f1de4c84c9e01bc091144
   - enabled: 1
-    path: Assets/Scenes/RPS Multiplayer.unity
+    path: Assets/Scenes/LocalRPS.unity
     guid: 778a5aca327194ddcbc684755008ea77
   - enabled: 1
     path: Assets/Scenes/CreateOrJoinRoom.unity
@@ -23,4 +23,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 1ce43c33e64cac74da4427135925df86
+  - enabled: 1
+    path: Assets/Scenes/WaitingForPlayers.unity
+    guid: f60f044090964574c8fcc81d747f6913
   m_configObjects: {}

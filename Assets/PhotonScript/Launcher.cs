@@ -58,14 +58,19 @@ public class Launcher : MonoBehaviourPunCallbacks
         Debug.Log("Successfully connected to Server. Attempting to join a lobby");
         PhotonNetwork.JoinLobby();
     }
+    //monitor for disconnects
     public override void OnDisconnected(DisconnectCause cause)
     {
         Debug.LogWarningFormat("Failed to connect, OnDisconnected was called with the reason {0}", cause);
         SceneManager.LoadScene(0);
     }
+    //Load the next scene if we succeed join a lobby
     public override void OnJoinedLobby()
     {
         PhotonNetwork.LoadLevel("CreateOrJoinRoom");
+
     }
+
+
     #endregion
 }
