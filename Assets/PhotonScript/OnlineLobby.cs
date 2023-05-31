@@ -15,15 +15,23 @@ public class OnlineLobby : MonoBehaviourPunCallbacks
     public TMP_Text roomName;
     public TMP_Text messages;
     public TMP_Text numberOfPlayer;
+    public TMP_InputField playerName;
 
     public string levelName;
     // Start is called before the first frame update
     void Start()
     {
+        PhotonNetwork.LocalPlayer.NickName = "Player" + PhotonNetwork.LocalPlayer.ActorNumber;
         roomName.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
 
-        numberOfPlayer.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString();
+        numberOfPlayer.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString() + " / "+ PhotonNetwork.CurrentRoom.MaxPlayers.ToString();
     }
+
+    public void UpdateName()
+    {
+        PhotonNetwork.LocalPlayer.NickName = playerName.text;
+    }
+
 
     public void LoadLevel()
     {
