@@ -734,7 +734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   joinRoomName: {fileID: 1977534377}
-  createRoomName: {fileID: 1977534377}
+  createRoomName: {fileID: 1160287963}
   errorLog: {fileID: 1405239752}
   maxPlayerPerRoom: 2
 --- !u!1 &1103842421
