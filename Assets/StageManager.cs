@@ -148,13 +148,13 @@ public class StageManager : MonoBehaviour
         {
             player1Win = true;
             player2Win = false;
-            winningText = "PLAYER 1 WINS. </b>";
+            winningText = "PLAYER 1 WINS. \n";
         }
         if (player2Score > player1Score)
         {
             player2Win = true;
             player1Win = false;
-            winningText = "PLAYER 2 WINS. </b>";
+            winningText = "PLAYER 2 WINS. \n";
         }
     }
 }
