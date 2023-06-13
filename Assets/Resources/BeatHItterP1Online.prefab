@@ -10031,13 +10031,13 @@ GameObject:
   - component: {fileID: 2396774049466409664}
   - component: {fileID: 2396774049466409667}
   - component: {fileID: 2396774049466409666}
-  - component: {fileID: 2396774049466409669}
   - component: {fileID: 2396774049466409668}
   - component: {fileID: 2396774049466409671}
   - component: {fileID: 2396774049466409670}
   - component: {fileID: 2396774049466409673}
   - component: {fileID: 4373628296058360920}
   - component: {fileID: 7492045165062811628}
+  - component: {fileID: 5138130614485686784}
   m_Layer: 3
   m_Name: BeatHItterP1Online
   m_TagString: Player
@@ -10117,32 +10117,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2396774049466409669
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2396774049466409672}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f91a30e8fe807046bdd2d13029f4019, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentPlayer: 0
-  p1RockInput: 97
-  p1PaperInput: 115
-  p1ScissorsInput: 100
-  p2RockInput: 117
-  p2PaperInput: 105
-  p2ScissorsInput: 111
-  _particle: {fileID: 2396774049908569981}
-  _tapKick: {fileID: 0}
-  _pressedWrong: {fileID: 0}
-  _rock: {fileID: 2396774049068162082}
-  _paper: {fileID: 2396774049141213814}
-  _scissors: {fileID: 2396774050816516068}
-  isMultiplayer: 0
 --- !u!114 &2396774049466409668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10296,6 +10270,28 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &5138130614485686784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2396774049466409672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f90b9b5bce30b3c449152f8be6b6f309, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  p1PaperInput: 97
+  p1RockInput: 115
+  p1ScissorsInput: 100
+  _particle: {fileID: 2396774049908569981}
+  _tapKick: {fileID: 0}
+  _pressedWrong: {fileID: 0}
+  _rock: {fileID: 2396774049141213814}
+  _paper: {fileID: 2396774049141213814}
+  _scissors: {fileID: 2396774050816516068}
+  isMultiplayer: 0
 --- !u!1 &2396774049908569980
 GameObject:
   m_ObjectHideFlags: 0
