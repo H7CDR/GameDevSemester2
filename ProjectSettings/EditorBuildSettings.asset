@@ -26,7 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/WaitingForPlayers.unity
     guid: f60f044090964574c8fcc81d747f6913
-  - enabled: 1
-    path: Assets/Scenes/WaitingForPlayers.unity
-    guid: 697c36aed76db9f4f8318e4d0ae821e0
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
   m_configObjects: {}

@@ -30,6 +30,6 @@ public class SceneLoader : MonoBehaviour
         SaveSystemScript.instance.SaveGame(GameMaster.instance.saveData);
         Application.Quit();
     }
-
+    
     
 }

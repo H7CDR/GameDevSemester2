@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using Photon.Pun;
 
 public class OnlineStageManager : MonoBehaviour
 {
@@ -34,15 +35,35 @@ public class OnlineStageManager : MonoBehaviour
     [SerializeField]
     GameObject _p1NodeKiller,_p2NodeKiller;
 
+    [Header("Players")]
+    public GameObject[] players;
+    public GameObject[] playerPrefabs;
+    public Transform[] playerSpawns;
+
+    private PhotonView view;
 
     private void Start()
     {
+        view = GetComponent<PhotonView>();
        _player1GameOver = false;
-       _player2GameOver = false;
         player1Win = false;
-        player2Win= false;
+
+        Invoke("SpawnPlayerAtStart", 1);
     }
 
+    void spawnPlayerAtStart()
+    {
+        //SpawnPlayer
+        int a = PhotonNetwork.LocalPlayer.ActorNumber - 1;
+        GameObject player = PhotonNetwork.Instantiate(playerPrefabs[a].name, playerSpawns[a].position, Quaternion.identity);
+        view.RPC("AddPlayerToList", RpcTarget.All, a, player);
+    }
+
+    [PunRPC]
+    void AddPlayerToList(int num, GameObject player)
+    {
+        players[num] = player;
+    }
     
     private void Update()
     {
