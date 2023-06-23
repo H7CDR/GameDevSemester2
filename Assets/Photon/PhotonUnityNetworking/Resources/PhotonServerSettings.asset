@@ -42,6 +42,17 @@ MonoBehaviour:
   - ReadyPlayer
   - UpdateName
   - AddPlayerToList
+  - AddAmazingScore
+  - AddMissedScore
+  - AddOkayScore
+  - AddPerfectScore
+  - PlayParticle
+  - spawnRandom
+  - DestroyGameObject
+  - DestroyObject
+  - AddScriptToManager
+  - UpdateScoreAndCombo
+  - UpdateScore
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

@@ -39,25 +39,24 @@ public class OnlineGameController : MonoBehaviour
     private void Update()
     {
         if (!view.IsMine) return;
-
-
-            if (Input.GetKeyDown(p1PaperInput))
-            {
-                _particle.Play();
-                Debug.Log("Paper!");
-                //_PaperButtonPressed = true;
-                _paperCollider.enabled = true;
-                _tapKick.Play();
-            }
-            else if (Input.GetKeyUp(p1PaperInput))
-            {
-                //_PaperButtonPressed = false;
-                _paperCollider.enabled = false;
-            }
+        if (Input.GetKeyDown(p1PaperInput))
+        {
+            view.RPC("PlayParticle", RpcTarget.All);
+            _particle.Play();
+            Debug.Log("Paper!");
+            //_PaperButtonPressed = true;
+            _paperCollider.enabled = true;
+            _tapKick.Play();
+        }
+        else if (Input.GetKeyUp(p1PaperInput))
+        {
+            //_PaperButtonPressed = false;
+            _paperCollider.enabled = false;
+        }
             if (Input.GetKeyDown(p1RockInput))
             {
-                _particle.Play();
-                Debug.Log("ROCK!");
+            view.RPC("PlayParticle", RpcTarget.All);
+            Debug.Log("ROCK!");
                 _rockCollider.enabled = true;
                 _tapKick.Play();
             } 
@@ -67,8 +66,8 @@ public class OnlineGameController : MonoBehaviour
             }
             if (Input.GetKeyDown(p1ScissorsInput))
             {
-                _particle.Play();
-                Debug.Log("Scissors!");
+            view.RPC("PlayParticle", RpcTarget.All);
+            Debug.Log("Scissors!");
                 _scissorsCollider.enabled = true;
                 _tapKick.Play();
             }
@@ -76,8 +75,6 @@ public class OnlineGameController : MonoBehaviour
             {
                 _scissorsCollider.enabled = false;
             }
- 
-
         /*if (currentPlayer == Player.Player2)
         {
             if (Input.GetKeyDown(p2PaperInput))
@@ -116,6 +113,12 @@ public class OnlineGameController : MonoBehaviour
                 _scissorsCollider.enabled = false;
             }
         }*/
+    }
+
+    [PunRPC]
+    void PlayParticle()
+    {
+        _particle.Play();
     }
 
 }

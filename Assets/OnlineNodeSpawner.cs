@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using Photon.Pun;
+using Photon.Realtime;
+using ExitGames.Client.Photon;
+using UnityEngine.Pool;
 
 public class OnlineNodeSpawner : MonoBehaviour
 {
@@ -14,68 +17,73 @@ public class OnlineNodeSpawner : MonoBehaviour
     GameObject _scissors;
     [SerializeField]
     GameObject[] _spawnables;
-    [SerializeField]
-    float _spawnInterval;
+    public float _spawnInterval;
     float _timer;
+    public float _CountDownTimer;
     [SerializeField]
     float _bpm;
     [SerializeField]
-    GameObject _spawnPoint, _p2SpawnPoint;
+    Transform[] _spawnPoint;
 
-    [SerializeField]
-    UnityEvent obJectSpawn;
 
     private PhotonView view;
 
+    //Define the photon event
     // Start is called before the first frame update
     void Start()
     {
         view = GetComponent<PhotonView>();
     }
 
-    private void OnEnable()
-    {
-        _spawnInterval = 60f / _bpm;
-    }
     // Update is called once per frame
     void Update()
     {
+
         if (!view.IsMine) return;
-        if(_timer >= _spawnInterval)
+
+        if (_CountDownTimer >=0)
         {
-            spawnRandom();
-            _timer = 0;
+            _CountDownTimer -= Time.deltaTime;  
         }
         else
         {
-           _timer += Time.deltaTime;
+            if (_timer >= _spawnInterval)
+            {
+                _timer = 0;
+                view.RPC("spawnRandom", RpcTarget.All);
+            }
+            else
+            {
+                _timer += Time.deltaTime;
+            }
         }
-
     }
+
 
     public void SpawnRock()
     {
-        Instantiate(_sphere, _spawnPoint.transform.position, Quaternion.identity);
+        int a = PhotonNetwork.LocalPlayer.ActorNumber - 1;
+        PhotonNetwork.Instantiate(_sphere.name, _spawnPoint[a].position, Quaternion.identity);
     }
 
     public void SpawnPaper()
     {
-        Instantiate(_paper, _spawnPoint.transform.position, Quaternion.identity);
+        int a = PhotonNetwork.LocalPlayer.ActorNumber - 1;
+        PhotonNetwork.Instantiate(_paper.name, _spawnPoint[a].position, Quaternion.identity);
     }    
 
     public void SpawnScissors()
     {
-        Instantiate(_scissors, _spawnPoint.transform.position, Quaternion.identity);
+        int a = PhotonNetwork.LocalPlayer.ActorNumber - 1;
+        PhotonNetwork.Instantiate(_scissors.name, _spawnPoint[a].position, Quaternion.identity);
     }
 
+    [PunRPC]
     public void spawnRandom()
     {
-        PhotonNetwork.Instantiate(_spawnables[Random.Range(0,3)].name,_spawnPoint.transform.position, Quaternion.identity);    
-        
+        int a = PhotonNetwork.LocalPlayer.ActorNumber - 1;
+        PhotonNetwork.Instantiate(_spawnables[Random.Range(0, 3)].name, _spawnPoint[a].position, Quaternion.identity);
+
     }
 
-    public void p2SpawnRandom()
-    {
-        Instantiate(_spawnables[Random.Range(0, 3)], _p2SpawnPoint.transform.position, Quaternion.identity);
-    }
 }

@@ -5,7 +5,6 @@ using Photon.Pun;
 using TMPro;
 
 
-
 public class OnlinePlayerName : MonoBehaviour
 {
     PhotonView view;
@@ -15,12 +14,21 @@ public class OnlinePlayerName : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        view = GetComponentInParent<PhotonView>();
+        view = GetComponent<PhotonView>();
+        text = GetComponentInChildren<TMP_Text>();
 
         if(view.IsMine)
         {
-            view.RPC("UpdateName", RpcTarget.All, PhotonNetwork.LocalPlayer.NickName);
+            StartCoroutine(TriggerNameUpdate(PhotonNetwork.LocalPlayer.NickName)); 
         }
+    }
+
+    IEnumerator TriggerNameUpdate(string name)
+    {
+        Debug.Log("CoroutineStart");
+        yield return new WaitForSeconds(2);
+        view.RPC("UpdateName", RpcTarget.All, name);
+        yield return null;
     }
 
     [PunRPC]
