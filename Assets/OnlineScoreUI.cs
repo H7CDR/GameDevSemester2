@@ -5,20 +5,20 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using Unity.VisualScripting.Antlr3.Runtime;
+using System;
 
 public class OnlineScoreUI : MonoBehaviour
 {
     private PhotonView view;
     public TextMeshProUGUI scoreUI;
     public TextMeshProUGUI comboUI;
-    public OnlineStageManager OSM;
-    
+    public int playerScore;
+    public int playerCombo;
 
     // Start is called before the first frame update
     void Start()
     {
         view = GetComponentInParent<PhotonView>();
-        OSM = GameObject.Find("LevelManager").GetComponent<OnlineStageManager>();
         
     }
 
@@ -32,8 +32,10 @@ public class OnlineScoreUI : MonoBehaviour
     {
         string score = "SCORE: ";
         string combo = "COMBO: ";
-        scoreUI.text = score += OSM.player1Score;
-        comboUI.text = combo += OSM.p1ComboCount;
+        scoreUI.text = score += playerScore.ToString();
+        comboUI.text = combo += playerCombo.ToString();
 
     }
+
+    
 }

@@ -8,6 +8,8 @@ TagManager:
   - Rock
   - Paper
   - Scissors
+  - Bullet
+  - Clearing
   layers:
   - Default
   - TransparentFX

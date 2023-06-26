@@ -4484,7 +4484,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh207990
+  m_Name: pb_Mesh53208
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -8568,7 +8568,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &963956120
 Transform:
   m_ObjectHideFlags: 0
@@ -10187,7 +10187,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1153467939
 Transform:
   m_ObjectHideFlags: 0
@@ -11479,7 +11479,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: 123123123123123
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -11513,7 +11513,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -12585,7 +12585,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1353066638
 Transform:
   m_ObjectHideFlags: 0
@@ -14648,7 +14648,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Replay
+  m_text: Return to Lobby
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -16688,7 +16688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1906409461
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17970,8 +17970,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -217.24, y: -171.47}
-  m_SizeDelta: {x: 300, y: 100}
+  m_AnchoredPosition: {x: 0, y: -171.47}
+  m_SizeDelta: {x: 500, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1963793922
 MonoBehaviour:
@@ -18017,40 +18017,16 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 924244355}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
       - m_Target: {fileID: 1335071271}
         m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
-        m_MethodName: reloadScene
-        m_Mode: 1
+        m_MethodName: disconnectAndReturnToLobby
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2109782199}
-        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
-        m_MethodName: ResumeGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: OnlineLauncher
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1963793923
@@ -19228,12 +19204,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e4f046f68a4cad43895b2814b7222bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player1Health: {fileID: 0}
-  scoreManagerScript: {fileID: 0}
+  playerHealth:
+  - {fileID: 0}
+  - {fileID: 0}
   _sound: {fileID: 0}
   _p1ControllerScript: {fileID: 0}
-  player1Score: 0
-  p1ComboCount: 0
+  player1Score: 
+  p1ComboCount: 
   p1GameOverCanvas: {fileID: 0}
   p2GameOverCanvas: {fileID: 0}
   allGameOverScreen: {fileID: 924244357}
@@ -19241,11 +19218,9 @@ MonoBehaviour:
   declareWinnerTxt: {fileID: 1264386712}
   scPerfect: 300
   scOkay: 100
-  scMissed: -50
-  _player1GameOver: 0
-  _player2GameOver: 0
-  player1Win: 0
-  player2Win: 0
+  scMissed: -100
+  scPass: 0
+  playerDeath: 
   _p1NodeKiller: {fileID: 120307429}
   _p2NodeKiller: {fileID: 1321704717}
   players:

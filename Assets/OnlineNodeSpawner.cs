@@ -82,6 +82,7 @@ public class OnlineNodeSpawner : MonoBehaviour
     public void spawnRandom()
     {
         int a = PhotonNetwork.LocalPlayer.ActorNumber - 1;
+        Debug.Log(a);
         PhotonNetwork.Instantiate(_spawnables[Random.Range(0, 3)].name, _spawnPoint[a].position, Quaternion.identity);
 
     }

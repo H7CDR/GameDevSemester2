@@ -53,6 +53,24 @@ MonoBehaviour:
   - AddScriptToManager
   - UpdateScoreAndCombo
   - UpdateScore
+  - ClearingObject
+  - TakeDamge
+  - updateUI
+  - TakeDamange
+  - Take2Damange
+  - AddWrongScore
+  - Die
+  - addFinalScore
+  - checkDeadBool
+  - AddingPlayerHealthToList
+  - checkIfBothDead
+  - allGameOver
+  - currentPlayerDead
+  - freezeGame
+  - playerDead
+  - AddPassScore
+  - DeadCheck
+  - allPlayerDead
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1

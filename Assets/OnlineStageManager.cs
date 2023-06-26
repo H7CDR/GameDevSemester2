@@ -7,8 +7,7 @@ using Photon.Pun;
 
 public class OnlineStageManager : MonoBehaviour
 {
-    public Health player1Health;
-    public ScoreManagerScript scoreManagerScript;
+    public OnlineHealthUI[] playerHealth;
     public AudioSource _sound;
 
     [SerializeField]
@@ -28,8 +27,9 @@ public class OnlineStageManager : MonoBehaviour
     public int scPerfect;
     public int scOkay;
     public int scMissed;
+    public int scPass;
 
-    public bool _player1GameOver, _player2GameOver, player1Win, player2Win;
+    public bool[] playerDeath;
     [SerializeField]
     GameObject _p1NodeKiller,_p2NodeKiller;
 
@@ -43,9 +43,9 @@ public class OnlineStageManager : MonoBehaviour
     private void Start()
     {
         view = GetComponent<PhotonView>();
-       _player1GameOver = false;
-        player1Win = false;
-
+        playerDeath = new bool[PhotonNetwork.CurrentRoom.MaxPlayers];
+        player1Score = new int[PhotonNetwork.CurrentRoom.MaxPlayers];
+        p1ComboCount = new int[PhotonNetwork.CurrentRoom.MaxPlayers]; 
         Invoke("spawnPlayerAtStart", 1);
     }
 
@@ -64,6 +64,7 @@ public class OnlineStageManager : MonoBehaviour
     void CallAddPlayerToList()
     {
         view.RPC("AddPlayerToList", RpcTarget.All);
+        view.RPC("AddingPlayerHealthToList",RpcTarget.All);
     }
 
     [PunRPC] void AddPlayerToList() //Find all instance of players and add them to the array;
@@ -77,124 +78,97 @@ public class OnlineStageManager : MonoBehaviour
         }
     }
     [PunRPC]
-    void AddScriptToManager()
+    void AddingPlayerHealthToList()
     {
-        player1Health = players[PhotonNetwork.LocalPlayer.ActorNumber - 1].GetComponent<HealthUI>();
-        _p1ControllerScript = players[PhotonNetwork.LocalPlayer.ActorNumber - 1].GetComponent<OnlineGameController>();
+        foreach(GameObject player in players)
+        {
+            int playerNum = player.GetComponent<PhotonView>().OwnerActorNr - 1;
+            playerHealth[playerNum] = player.GetComponent<OnlineHealthUI>();
+        }
 
+    }
+
+    void addingPlayerScoreToList()
+    {
+        foreach(GameObject player in players)
+        {
+            int playerNum = player.GetComponent<PhotonView>().OwnerActorNr - 1;
+            player1Score[playerNum] = player.GetComponentInChildren<OnlineScoreUI>().playerScore;
+        }
     }
     
     private void Update()
     {
-        if (_player1GameOver && _player2GameOver) 
+        if (allPlayerDead() ==false)
         {
-            Time.timeScale = 0f;
-            //allGameOver();
+            return;
         }
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            gamePaused();
-        }
+        view.RPC("allGameOver", RpcTarget.All);
     }
 
-    public void ResumeGame()
+    [PunRPC]
+    void currentPlayerDead()
     {
-        Time.timeScale = 1f;
-        _sound.GetComponent<AudioSource>().Play();
-    }
-    public void P1GameOver()
-    {
-        p1GameOverCanvas.gameObject.SetActive(true);
-        Time.timeScale = 0;
-        _sound.GetComponent<AudioSource>().Stop();
+        playerDeath[PhotonNetwork.LocalPlayer.ActorNumber - 1] = true;
     }
 
-    public void Player1GameOver()
+    [PunRPC]
+    bool allPlayerDead()
     {
-        p1GameOverCanvas.gameObject.SetActive(true);
-        _p1ControllerScript.gameObject.SetActive(false);
-        SaveP1Score();
-        _player1GameOver = true;
-        //_p1NodeKiller.gameObject.SetActive(false);
+        foreach(bool item in playerDeath)
+        {
+            if (item == false) return false;
+        }
+        return true;
     }
-    /*public void Player2GameOver()
+
+    [PunRPC]
+    void allGameOver()
     {
-        p2GameOverCanvas.gameObject.SetActive(true);
-        _p2ControllerScript.gameObject.SetActive(false);
-        SaveP2Score();
-        _player2GameOver = true;
-        _p2NodeKiller.gameObject.SetActive(false);
-    }*/
-   /* public void allGameOver()
-    {
-        p1GameOverCanvas.gameObject.SetActive(false);
-        p2GameOverCanvas.gameObject.SetActive(false);
-        _p1ControllerScript.gameObject.SetActive(true);
-        _p2ControllerScript.gameObject.SetActive(true);
+        //freezeGame();
         allGameOverScreen.gameObject.SetActive(true);
+        addingPlayerScoreToList();
         compareScore();
-        _sound.Stop();
-        declareWinnerTxt.text = winningText + "P1: " + player1Score + ".     " + "P2: " + player2Score +"." ;
+    }
 
-    }*/
-
-    public void gamePaused()
+    void freezeGame()
     {
-        p1PausedScreen.gameObject.SetActive(true);
         Time.timeScale = 0;
-        _sound.GetComponent<AudioSource>().Pause();
+    }
+    void slowGame()
+    {
+        Time.timeScale = 0.2f;
     }
 
-    /*public void SaveP1Score()
+    void compareScore()
     {
-        GameMaster.instance.saveData.player1Scores.Add(player1Score);
-        GameMaster.instance.saveData.player1Scores.Sort(SortFunc);
-        SaveSystemScript.instance.SaveGame(GameMaster.instance.saveData);
-        Debug.Log("Data Save");
-    }*/
-
-    /*public void SaveP2Score()
-    {
-        GameMaster.instance.saveData.player2Scores.Add(player2Score);
-        GameMaster.instance.saveData.player2Scores.Sort(SortFunc);
-        SaveSystemScript.instance.SaveGame(GameMaster.instance.saveData);
-    }*/
-
-    int SortFunc(int a, int b)
-    {
-        if (a < b)
+        if (player1Score[0] > player1Score[1])
         {
-            return +1;
+            declareWinnerTxt.text ="Player 1 WIN!<br>" + "\n" + player1Score[0] +  "  >  " + player1Score[1];
         }
-        if (a > b)
+        else if (player1Score[0] < player1Score[1])
         {
-            return -1;
-        }
-        else
-        {
-            return 0;
+            declareWinnerTxt.text = "Player 2 WIN!<br>" + "\n" + player1Score[0] + "  <  " + player1Score[1];
         }
     }
 
-    public void resetScore()
+    public void PlayerDeath(int playerNum)
     {
-        GameMaster.instance.saveData.player1Scores.Clear();
-        SaveSystemScript.instance.SaveGame(GameMaster.instance.saveData);
+        bool anyAlive = false;
+        foreach(GameObject player in players)
+        {
+            if(player.GetComponent<OnlineHealthUI>().isDead == false)
+            {
+                anyAlive = true;
+            }
+
+        }
+        if(anyAlive == false)
+        {
+            Debug.Log("NO ONE IS ALIVE");
+            allGameOver();
+        }
     }
 
-    /*public void compareScore()
-    {
-        if (player1Score > player2Score)
-        {
-            player1Win = true;
-            player2Win = false;
-            winningText = "PLAYER 1 WINS. </b>";
-        }
-        if (player2Score > player1Score)
-        {
-            player2Win = true;
-            player1Win = false;
-            winningText = "PLAYER 2 WINS. </b>";
-        }
-    }*/
+
 }
