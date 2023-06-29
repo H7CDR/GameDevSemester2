@@ -25,9 +25,9 @@ public class OnlineLobby : MonoBehaviourPunCallbacks
     {
         playersReady = new bool[PhotonNetwork.CurrentRoom.MaxPlayers];
         PhotonNetwork.LocalPlayer.NickName = "Player" + PhotonNetwork.LocalPlayer.ActorNumber;
-        roomName.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name ;
+        roomName.text = "Room Name: " + PhotonNetwork.CurrentRoom.Name;
 
-        numberOfPlayer.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString() + " / "+ PhotonNetwork.CurrentRoom.MaxPlayers.ToString();
+        numberOfPlayer.text = PhotonNetwork.CurrentRoom.PlayerCount.ToString() + " / " + PhotonNetwork.CurrentRoom.MaxPlayers.ToString();
     }
 
     public override void OnPlayerEnteredRoom(Player newPlayer)
@@ -49,7 +49,12 @@ public class OnlineLobby : MonoBehaviourPunCallbacks
         PhotonNetwork.LocalPlayer.NickName = playerName.text;
     }
 
-    
+    public void ReturnToMenu()
+    {
+        PhotonNetwork.LeaveRoom();
+        PhotonNetwork.Disconnect();
+        SceneManager.LoadScene(0);
+    }
 
     public void LoadLevel()
     {
@@ -72,8 +77,8 @@ public class OnlineLobby : MonoBehaviourPunCallbacks
     }
 
     bool AllPlayerReady()
-    { 
-        foreach(bool item in playersReady)
+    {
+        foreach (bool item in playersReady)
         {
             if (item == false) return false;
 
@@ -84,7 +89,7 @@ public class OnlineLobby : MonoBehaviourPunCallbacks
     [PunRPC]
     public void ReadyPlayer(int playerNumber, bool isReady)
     {
-        playersReady[playerNumber-1] = isReady;
+        playersReady[playerNumber - 1] = isReady;
     }
 
     public void RunReadyPlayer(bool isReady)
@@ -97,6 +102,8 @@ public class OnlineLobby : MonoBehaviourPunCallbacks
         int playerNumber = PhotonNetwork.LocalPlayer.ActorNumber;
         bool isReady = playersReady[PhotonNetwork.LocalPlayer.ActorNumber - 1];
 
-        view.RPC("ReadyPlayer", RpcTarget.All, playerNumber, isReady); 
+        view.RPC("ReadyPlayer", RpcTarget.All, playerNumber, isReady);
     }
+
+
 }

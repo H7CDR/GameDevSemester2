@@ -20,6 +20,11 @@ public class DestroyFallingObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("GameEnder"))
+        {
+            healthUIScript.Die();
+            Debug.Log("GameEnd");
+        }
         healthUIScript.TakeDamge(2);
         Destroy(other.gameObject);
     }
