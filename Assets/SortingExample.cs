@@ -9,10 +9,13 @@ using System.Data;
 public class SortingExample : MonoBehaviour
 {
     List<int> SoloScores = new List<int>();
+    List<int> ScoreOnDeath = new List<int>();
     int i = 1;
 
     [SerializeField]
     TextMeshProUGUI leaderBoardTxt;
+    [SerializeField]
+    TextMeshProUGUI finalScore;
 
     private void Start()
     {
@@ -25,6 +28,30 @@ public class SortingExample : MonoBehaviour
     private void Update()
     {
 
+    }
+
+
+    public void runShowScore()
+    {
+        Debug.Log("runshowscoreStart");
+        Invoke("showScoreOnDeath", 2f);
+    }
+    public void showScoreOnDeath()
+    {
+        finalScore.text = "";
+        Debug.Log("ShowScore");
+        ScoreOnDeath.Clear();
+        foreach (int score in GameMaster.instance.saveData.player1Scores)
+        {
+            ScoreOnDeath.Add(score);
+            ScoreOnDeath.Sort(SortFunc);
+        }
+        foreach (int k in ScoreOnDeath)
+        {
+
+            finalScore.text += i.ToString() + ". " + k + "<br>";
+            i++;
+        }
     }
 
     public void sortP1Score()
@@ -60,7 +87,7 @@ public class SortingExample : MonoBehaviour
     }
 
     public void exitGame()
-    { 
+    {
         Application.Quit();
     }
 
