@@ -36837,6 +36837,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2109782199}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
+        m_MethodName: SaveP1Score
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   healthBar: {fileID: 0}
   healthIcon: {fileID: 87830162}
 --- !u!43 &1247371109
@@ -59649,6 +59661,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 2109782199}
+        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
+        m_MethodName: SaveP2Score
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
   healthBar: {fileID: 0}
   healthIcon: {fileID: 1645556321}
 --- !u!114 &1966513015
@@ -61464,6 +61488,7 @@ MonoBehaviour:
   _player2GameOver: 0
   player1Win: 0
   player2Win: 0
+  soundOn: 0
   _p1NodeKiller: {fileID: 120307429}
   _p2NodeKiller: {fileID: 1321704717}
 --- !u!1001 &2113177611
