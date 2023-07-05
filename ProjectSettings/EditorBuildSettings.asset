@@ -12,6 +12,24 @@ EditorBuildSettings:
     path: Assets/Scenes/RPS.unity
     guid: adfcd492620f1de4c84c9e01bc091144
   - enabled: 1
-    path: Assets/Scenes/RPS Multiplayer.unity
+    path: Assets/Scenes/LocalRPS.unity
     guid: 778a5aca327194ddcbc684755008ea77
+  - enabled: 1
+    path: Assets/Scenes/CreateOrJoinRoom.unity
+    guid: 4b188bb34aeda8848b6d608fc664d4b3
+  - enabled: 1
+    path: Assets/Scenes/OnlineLauncher.unity
+    guid: 5b7740637776fb24288ea838393d35f9
+  - enabled: 1
+    path: Assets/Scenes/Lobby.unity
+    guid: 1ce43c33e64cac74da4427135925df86
+  - enabled: 1
+    path: Assets/Scenes/WaitingForPlayers.unity
+    guid: f60f044090964574c8fcc81d747f6913
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/OnlineRPS2.unity
+    guid: c4ef73a285829427dbcd8f46febed62d
   m_configObjects: {}

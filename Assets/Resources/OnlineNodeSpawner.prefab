@@ -1,0 +1,72 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7991791879581187338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7991791879581187339}
+  - component: {fileID: 7991791879581187336}
+  m_Layer: 0
+  m_Name: OnlineNodeSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &7991791879581187339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991791879581187338}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.171777, y: 8.708894, z: 50}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7991791879581187336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7991791879581187338}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45f1e364c2e200a42a3312b39818b69d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _sphere: {fileID: 6745531397569101616, guid: 708fa35246a9ec040ae5c40d0243e688, type: 3}
+  _paper: {fileID: 7745829719480950840, guid: 5f2016e43e6b0bf4a871812b9a532ecb, type: 3}
+  _scissors: {fileID: 2399085002990005313, guid: 1c47092e0e5f75246a7adc689955c81b, type: 3}
+  _spawnables:
+  - {fileID: 6745531397569101616, guid: 708fa35246a9ec040ae5c40d0243e688, type: 3}
+  - {fileID: 6745531397569101616, guid: 708fa35246a9ec040ae5c40d0243e688, type: 3}
+  - {fileID: 2399085002990005313, guid: 1c47092e0e5f75246a7adc689955c81b, type: 3}
+  _spawnInterval: 0
+  _bpm: 170
+  _spawnPoint: {fileID: 0}
+  _p2SpawnPoint: {fileID: 0}
+  obJectSpawn:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 7991791879581187336}
+        m_TargetAssemblyTypeName: NodeSpawner, Assembly-CSharp
+        m_MethodName: spawnRandom
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2

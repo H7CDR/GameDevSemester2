@@ -1,11 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
 public class DestroyFallingObject : MonoBehaviour
 {
-    public UnityEvent ontriggerEvent;
     [SerializeField]
     HealthUI healthUIScript;
     // Start is called before the first frame update
@@ -22,8 +20,12 @@ public class DestroyFallingObject : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("GameEnder"))
+        {
+            healthUIScript.Die();
+            Debug.Log("GameEnd");
+        }
         healthUIScript.TakeDamge(2);
         Destroy(other.gameObject);
-        ontriggerEvent.Invoke();
     }
 }

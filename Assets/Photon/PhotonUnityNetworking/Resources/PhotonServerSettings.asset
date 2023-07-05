@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
   AppSettings:
-    AppIdRealtime: 
+    AppIdRealtime: 7e58dd76-30d8-4a55-8060-641a40fce7a2
     AppIdFusion: 
     AppIdChat: 
     AppIdVoice: 
@@ -28,7 +28,7 @@ MonoBehaviour:
     AuthMode: 0
     EnableLobbyStatistics: 0
     NetworkLogging: 1
-  DevRegion: 
+  DevRegion: au
   PunLogging: 0
   EnableSupportLogger: 0
   RunInBackground: 1
@@ -39,6 +39,38 @@ MonoBehaviour:
   - DestroySpaceship
   - Fire
   - RespawnSpaceship
+  - ReadyPlayer
+  - UpdateName
+  - AddPlayerToList
+  - AddAmazingScore
+  - AddMissedScore
+  - AddOkayScore
+  - AddPerfectScore
+  - PlayParticle
+  - spawnRandom
+  - DestroyGameObject
+  - DestroyObject
+  - AddScriptToManager
+  - UpdateScoreAndCombo
+  - UpdateScore
+  - ClearingObject
+  - TakeDamge
+  - updateUI
+  - TakeDamange
+  - Take2Damange
+  - AddWrongScore
+  - Die
+  - addFinalScore
+  - checkDeadBool
+  - AddingPlayerHealthToList
+  - checkIfBothDead
+  - allGameOver
+  - currentPlayerDead
+  - freezeGame
+  - playerDead
+  - AddPassScore
+  - DeadCheck
+  - allPlayerDead
   DisableAutoOpenWizard: 1
   ShowSettings: 0
-  DevRegionSetOnce: 0
+  DevRegionSetOnce: 1

@@ -21,6 +21,7 @@ public class HealthUI : Health
         updateUI();
     }
 
+
     void updateUI()
     {
         if(healthBar)

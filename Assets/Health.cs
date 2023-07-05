@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
     public float maxHealth;
     public float currentHealth;
 
-    bool isDead;
+    public bool isDead;
 
     public UnityEvent onDamaged;
     public UnityEvent onDeath;
@@ -23,6 +23,7 @@ public class Health : MonoBehaviour
 
     public void Die()
     {
+        isDead = true;
         onDeath.Invoke();   
     }
 }

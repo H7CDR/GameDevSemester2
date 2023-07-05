@@ -8,6 +8,9 @@ TagManager:
   - Rock
   - Paper
   - Scissors
+  - Bullet
+  - Clearing
+  - GameEnder
   layers:
   - Default
   - TransparentFX
