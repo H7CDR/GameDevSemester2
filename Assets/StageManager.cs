@@ -31,6 +31,7 @@ public class StageManager : MonoBehaviour
     public int scMissed;
 
     public bool _player1GameOver, _player2GameOver, player1Win, player2Win;
+    public bool soundOn = false;
     [SerializeField]
     GameObject _p1NodeKiller,_p2NodeKiller;
 
@@ -118,6 +119,12 @@ public class StageManager : MonoBehaviour
         GameMaster.instance.saveData.player2Scores.Add(player2Score);
         GameMaster.instance.saveData.player2Scores.Sort(SortFunc);
         SaveSystemScript.instance.SaveGame(GameMaster.instance.saveData);
+    }
+
+    public void muteSound()
+    {
+        soundOn = !soundOn;
+        _sound.mute = soundOn;
     }
 
     int SortFunc(int a, int b)
