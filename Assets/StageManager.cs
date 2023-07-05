@@ -17,7 +17,7 @@ public class StageManager : MonoBehaviour
     public int player2Score =0;
     public int p1ComboCount;
     public int p2ComboCount;
-    [Header("UI")]
+    
     public CanvasGroup p1GameOverCanvas, p2GameOverCanvas, allGameOverScreen;
     public CanvasGroup p1PausedScreen;
 
@@ -71,17 +71,17 @@ public class StageManager : MonoBehaviour
 
     public void Player1GameOver()
     {
-        p1GameOverCanvas.gameObject.SetActive(true);
+        //p1GameOverCanvas.gameObject.SetActive(true);
         _p1ControllerScript.gameObject.SetActive(false);
-        SaveP1Score();
+        //SaveP1Score();
         _player1GameOver = true;
         _p1NodeKiller.gameObject.SetActive(false);
     }
     public void Player2GameOver()
     {
-        p2GameOverCanvas.gameObject.SetActive(true);
+        //p2GameOverCanvas.gameObject.SetActive(true);
         _p2ControllerScript.gameObject.SetActive(false);
-        SaveP2Score();
+        //SaveP2Score();
         _player2GameOver = true;
         _p2NodeKiller.gameObject.SetActive(false);
     }

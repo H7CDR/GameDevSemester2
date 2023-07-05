@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.6320754, g: 0.530194, b: 0.46213064, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: d9a12ffaaa5dd67418211def4dfaee9a, type: 2}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 3a8c5fa081c5a974b9fffa93e4230ece, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.53973985, g: 0.6166995, b: 0.7464954, a: 1}
+  m_IndirectSpecularColor: {r: 0.7492671, g: 0.5588723, b: 0.78428733, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8424,7 +8424,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh129816
+  m_Name: pb_Mesh159274
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -9685,7 +9685,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh129742
+  m_Name: pb_Mesh159200
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -18468,7 +18468,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh129156
+  m_Name: pb_Mesh158614
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -21093,18 +21093,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2109782199}
         m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
-        m_MethodName: SaveP1Score
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2109782199}
-        m_TargetAssemblyTypeName: StageManager, Assembly-CSharp
         m_MethodName: P1GameOver
         m_Mode: 1
         m_Arguments:
@@ -21126,6 +21114,18 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 860086173}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
         m_CallState: 2
   healthBar: {fileID: 0}
   healthIcon: {fileID: 87830162}
@@ -21216,7 +21216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1259295826}
   m_LocalRotation: {x: 0.21696909, y: -0.77775156, z: 0.36267167, w: 0.46529162}
-  m_LocalPosition: {x: 0, y: 3, z: 0}
+  m_LocalPosition: {x: 0, y: 37.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22235,7 +22235,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 3dff2590389264f31a02a22e56c05098, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.428
+  m_Volume: 0.171
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -36634,8 +36634,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1928921654}
   m_LocalRotation: {x: -0, y: -0.019566555, z: -0, w: 0.99980855}
-  m_LocalPosition: {x: 9.7294, y: 4.05, z: -74.96}
-  m_LocalScale: {x: 1, y: 1, z: 1.6993}
+  m_LocalPosition: {x: 9.7294, y: 2.8496, z: -74.96}
+  m_LocalScale: {x: 1, y: 1.3001, z: 1.6993}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -38417,7 +38417,7 @@ MonoBehaviour:
   p2GameOverCanvas: {fileID: 860086177}
   allGameOverScreen: {fileID: 860086177}
   p1PausedScreen: {fileID: 1964821037}
-  declareWinnerTxt: {fileID: 0}
+  declareWinnerTxt: {fileID: 1056058921}
   scPerfect: 200
   scOkay: 100
   scMissed: -50

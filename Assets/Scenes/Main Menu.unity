@@ -168,6 +168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   leaderBoardTxt: {fileID: 1263635024}
+  finalScore: {fileID: 0}
 --- !u!1 &214182815
 GameObject:
   m_ObjectHideFlags: 0
@@ -1303,7 +1304,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -264.42, y: -48}
-  m_SizeDelta: {x: 200, y: 50}
+  m_SizeDelta: {x: 230, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &712428502
 MonoBehaviour:
@@ -1325,7 +1326,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Player 2 :'
+  m_text: 'Player 2 :
+
+    (Online plays)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4804,7 +4807,7 @@ Canvas:
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 25
+  m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
@@ -4854,7 +4857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6505322415815357443, guid: 91227eebfc5771140af0e8ab304a6751, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -49.4708
+      value: -50.5
       objectReference: {fileID: 0}
     - target: {fileID: 6505322415815357443, guid: 91227eebfc5771140af0e8ab304a6751, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4936,7 +4939,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 198649829771264215, guid: c8633057b62522745ad995cd60ae755b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 51.0722
+      value: 51
       objectReference: {fileID: 0}
     - target: {fileID: 198649829771264215, guid: c8633057b62522745ad995cd60ae755b, type: 3}
       propertyPath: m_LocalPosition.y
